@@ -142,7 +142,7 @@
                         <td>—</td>
                         <td>—</td>
                         <td>
-                            <a href="#" class="btn btn-info btn-sm">Comprar</a>
+                            <a href="/mini-erp/public/index.php?rota=carrinho&acao=adicionar&id=<?= $p['id'] ?>" class="btn btn-info btn-sm">Comprar</a>
                             <a href="/mini-erp/public/index.php?rota=produtos&acao=editar&id=<?= $p['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
                             <a href="/mini-erp/public/index.php?rota=produtos&acao=excluir&id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este produto e todas as suas variações de estoque?');">Excluir</a>
                         </td>
@@ -155,7 +155,7 @@
                             <td><?= htmlspecialchars($linha['variacao']) ?></td>
                             <td><?= (int)$linha['quantidade'] ?></td>
                             <td>
-                                <a href="#" class="btn btn-info btn-sm">Comprar</a>
+                                <a href="/mini-erp/public/index.php?rota=carrinho&acao=adicionar&id=<?= $p['id'] ?>" class="btn btn-info btn-sm">Comprar</a>
                                 <a href="/mini-erp/public/index.php?rota=produtos&acao=editar&id=<?= $p['id'] ?>" class="btn btn-primary btn-sm">Editar</a>
                                 <a href="/mini-erp/public/index.php?rota=produtos&acao=excluir&id=<?= $p['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este produto e todas as suas variações de estoque?');">Excluir</a>
                             </td>
