@@ -50,6 +50,17 @@ class Estoque {
         return $success;
     }
 
+ public function buscarPorId($id) {
+        $query = "SELECT id, produto_id, variacao, quantidade FROM estoque WHERE id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $estoque_data = $result->fetch_assoc(); // Retorna null se não encontrar
+        $stmt->close();
+        return $estoque_data;
+    }
+
     // Método para deletar uma variação de estoque
     public function deletar($id) {
         $query = "DELETE FROM estoque WHERE id = ?";
