@@ -2,15 +2,21 @@
 
 // 1. Inicia a sessão (para o carrinho, etc.)
 session_start();
+date_default_timezone_set('America/Sao_Paulo');
 
+if (isset($_SESSION['user_timezone'])) {
+    date_default_timezone_set($_SESSION['user_timezone']);
+}
 // 2. Inclui o arquivo de conexão com o banco de dados
 require_once dirname(__DIR__) . '/config/conexao.php'; // LINHA 7 // LINHA 7 // __DIR__ garante o caminho correto
 require_once dirname(__DIR__) . '/controllers/ProdutoController.php';
 require_once dirname(__DIR__) . '/controllers/CarrinhoController.php';
+require_once dirname(__DIR__) . '/controllers/PedidoController.php';
 
 // Instancia os controllers
 $produtoController = new ProdutoController($conn);
 $carrinhoController = new CarrinhoController($conn);
+$pedidoController = new PedidoController($conn);
 
 
 
@@ -44,19 +50,14 @@ case 'carrinho':
         }
         break;
 
-
-    // Futuras rotas virão aqui: 'pedidos', 'cupons', etc.
-    /*
-    case 'pedidos':
-        require_once __DIR__ . '/../controllers/PedidoController.php';
-        $controller = new PedidoController($conn);
-        if (method_exists($controller, $acao)) {
-            $controller->$acao();
-        } else {
-            echo "Ação não encontrada para pedidos.";
-        }
-        break;
-    */
+case 'pedidos': // NOVO BLOCO DE ROTAS PARA PEDIDOS
+    if (method_exists($pedidoController, $acao)) {
+        $pedidoController->$acao();
+    } else {
+        echo "Ação não encontrada para pedidos.";
+    }
+    break;
+    
 
     default:
         echo "Rota não encontrada.";
